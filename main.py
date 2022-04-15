@@ -22,15 +22,15 @@ def encrypt():
 
     # Размеры текста и картинки
     text_len = os.stat('text.txt').st_size
-    img_len = os.stat('wallpaper.bmp').st_size
+    img_len = os.stat('img.bmp').st_size
     if text_len >= img_len * degree/8 - 54:
         print("Too long text")
         return
 
     # Открытие всех файлов
     text = open('text.txt', 'r')
-    start_bmp = open('wallpaper.bmp', 'rb')
-    encode_bmp = open('wallpaper_.bmp', 'wb')
+    start_bmp = open('img.bmp', 'rb')
+    encode_bmp = open('img_.bmp', 'wb')
 
     # Первые 54 бита картинки(bmp) изменять нельзя,
     # поэтому записываем их в новую картинку без изменений
@@ -85,7 +85,7 @@ def decrypt():
     degree = int(input("Enter degree of encoding: 1/2/4/8:\n"))
     # Сколько символов прочитать
     to_read = int(input("How many symbols to read: \n"))
-    img_len = os.stat('Wallpaper_.bmp').st_size
+    img_len = os.stat('img_.bmp').st_size
 
     # Если запрос на количество символов для прочтения больше чем размер возможных мест кодировки
     if to_read >= img_len * degree / 8 - 54:
@@ -94,7 +94,7 @@ def decrypt():
 
     # Файл, куда запишем расшифровку
     text = open('text_.txt', 'w')
-    encoded_bmp = open('wallpaper_.bmp', 'rb')
+    encoded_bmp = open('img_.bmp', 'rb')
     # Пропускаем чтение первых 54 символов
     encoded_bmp.seek(54)
 
